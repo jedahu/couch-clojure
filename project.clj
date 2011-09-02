@@ -1,7 +1,7 @@
 (defproject
   me.panzoo/couch-clojure "0.1.0-SNAPSHOT"
 
-  :description "Clojure views for CouchDb and BigCouch (Cloudant)"
+  :description "Clojure views for CouchDb and BigCouch (Cloudant)."
 
   :dependencies
   [[org.clojure/clojure "1.2.1"]
