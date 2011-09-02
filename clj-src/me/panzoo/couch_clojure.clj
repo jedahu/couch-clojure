@@ -40,7 +40,7 @@
 
   A function taking a string and returning nothing. To log to the couchdb
   log file, write a json array with first value \"log\" and second value
-  msg, e.g., (pr (str \"[\\\"log\\\", \" msg))."
+  msg, e.g., (pr (str \"[\\\"log\\\", \\\"\" msg \"\\\"]\"))."
   [name & {:keys [map reduce rereduce log]}]
   `(gen-class
      :name ~(symbol (str (ns-name *ns*) "." name))
