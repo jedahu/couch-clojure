@@ -1,8 +1,6 @@
-bin/*
-dist/*
-docs/*
 *~
-run
-semantic.cache
-build.properties
+*.jar
+.*
+/lib
+/classes
 
