@@ -1,4 +1,6 @@
 (ns me.panzoo.couch-clojure
+  (:require
+    clojure.string)
   (:use
     me.panzoo.couch-clojure.ClojureView))
 
@@ -42,14 +44,19 @@
   log file, write a json array with first value \"log\" and second value
   msg, e.g., (pr (str \"[\\\"log\\\", \\\"\" msg \"\\\"]\"))."
   [name & {:keys [map reduce rereduce log]}]
-  `(gen-class
-     :name ~(symbol (str (ns-name *ns*) "." name))
-     :extends me.panzoo.couch-clojure.ClojureView
-     :post-init -setup
-     :prefix ~name)
-  `(defn ~(symbol (str name "-setup")) [this#]
-     (.setup this#
-       {:mapfn ~map
-        :reducefn ~reduce
-        :rereducefn ~rereduce
-        :logfn ~log})))
+  (let [;fqn (symbol (replace (str ns "." name)))
+        pfx (symbol (str name "-"))]
+    `(do
+       (gen-class
+         :name ~(symbol (clojure.string/replace
+                          (str (ns-name *ns*) "." name) #"-" "_"))
+         :extends me.panzoo.couch_clojure.ClojureView
+         :post-init post-init
+         :prefix ~pfx)
+       (defn ~(symbol (str pfx "post-init")) [this#]
+         (.setup
+           this#
+           {:mapfn ~map
+            :reducefn ~reduce
+            :rereducefn ~rereduce
+            :logfn ~log})))))
