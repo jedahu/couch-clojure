@@ -1,3 +1,5 @@
+# WARNING: this is defunct and never worked properly. Try com.ashafa/clutch instead.
+
 ### Overview
 
 couchjava is the interface for the java language view server for CouchDB that runs on [Cloudant's BigCouch][1].  CouchDB views are normally written in Javascript, but Java language views have several applications and advantages:
